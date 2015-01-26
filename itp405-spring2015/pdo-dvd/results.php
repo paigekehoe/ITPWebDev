@@ -45,20 +45,21 @@ if (!isset($_GET['searchtitle'])) {
             $dbname = 'dvd';
             $user = 'student';
             $pass = 'ttrojan';
+
             $searchtitle = $_GET['searchtitle'];
+
             $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 
             $sql = "
                 SELECT title, rating_name, genre_name, format_name
                 FROM dvds
-                INNER JOIN ratings 
+                INNER JOIN ratings
                 ON dvds.rating_id = ratings.id
-                INNER JOIN genres 
-                ON dvds.genre_id = genres.id
-                INNER JOIN formats 
-                ON dvd.format_id = formats.id
+                INNER JOIN genres
+                ON dvds.genre_id = genres.id 
+                INNER JOIN formats
+                ON dvds.format_id = formats.id
                 WHERE title LIKE ?
-
             ";
 
 
@@ -68,32 +69,33 @@ if (!isset($_GET['searchtitle'])) {
             $statement->execute();
             $dvds = $statement->fetchAll(PDO::FETCH_OBJ);
 
-            var_dump($dvds);
-
-        echo "<table border='1'>
-        <tr>
-        <th>Title</th>
-        <th>Rating</th>
-        <th>Genre</th>
-        <th>Format</th>
-        </tr>";
+           // var_dump($dvds);
     ?>
-    <?php foreach ($dvds as $dvd) : ?>
-        <div class = "dvd">
-            <h4>
-                <?php echo $dvd->title; ?>
-            </h4>
-            
-            <div> Rating: <?php echo $dvd->rating; ?> </div>
-            <div> Genre: <?php echo $dvd->genre; ?> </div>
-            <div> Format: <?php echo $dvd->format; ?> </div>
 
+<div class="restults-table">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Genre</th>
+                <th>Format</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($dvds as $dvd) : ?>
+            <tr>
+                <td> <h4><?php echo $dvd->title; ?> </h4></td>
+                <td><?php echo $dvd->rating_name; ?> </td>
+                <td><?php echo $dvd->genre_name; ?> </td>
+                <td><?php echo $dvd->format_name; ?> </td>
+            </tr>
+                <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-
-        </div>
-    <?php endforeach; ?>
-
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 

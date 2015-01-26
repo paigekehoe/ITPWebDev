@@ -36,7 +36,7 @@
 			</div>
 	    <form action="results.php" method="get">
 	       <h3> Movie Title: <input type="text" name="searchtitle"> 
-	        <input type = "submit"> </h3> 
+	        <input type = "submit" value = "Search"> </h3> 
 	    </form>
 
 	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
