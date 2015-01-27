@@ -14,10 +14,10 @@ if (!isset($_GET['searchtitle'])) {
     <title> Search Results</title>
 
     <link href="css/bootstrap.css" rel="stylesheet"/>
-    <link href="css/footable.core.css" rel="stylesheet" />
+    <link href="css/footable.core.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+    <script src="js/footable.js" type="text/javascript"></script>
 </head>
 
     <meta charset="utf-8">
@@ -38,8 +38,8 @@ if (!isset($_GET['searchtitle'])) {
             </div>
         <div class = panel-body>
 
-            <h4>You searched for: </h4> <h3> <?php echo $_GET['searchtitle']; ?> </h3> </br></br>
-        
+            <h4>You searched for: </h4> <h3 style ="color: darkgrey"> <?php echo $_GET['searchtitle']; ?> </h3> </br></br>
+          
         <?php
 
             $host = 'itp460.usc.edu';
@@ -69,17 +69,22 @@ if (!isset($_GET['searchtitle'])) {
             $statement->bindParam(1, $like);
             $statement->execute();
             $dvds = $statement->fetchAll(PDO::FETCH_OBJ);
+            ?>
 
-           // var_dump($dvds);
-    ?>
+
+           <?php if(empty($dvds)) : ?>
+                <h3> Your search returned no results.  Please try again <a href="/search.php"> here</a> </h3>
+           
+           
+            <?php else : ?>
 
     <script type="text/javascript">
     $(function () {
         $('.footable').footable();
     });
-</script>
+    </script>
 
-<div class="restults-table">
+<div>
     <table class="footable table">
         <thead>
             <tr>
@@ -102,11 +107,13 @@ if (!isset($_GET['searchtitle'])) {
     </table>
 </div>
 
+<?php endif; ?>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="path_to_your_js/footable.js" type="text/javascript"></script>
 
-</div>
+
 </body>
 </html>
