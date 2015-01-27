@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-
 <?php
 
 if (!isset($_GET['searchtitle'])) {
@@ -8,6 +5,12 @@ if (!isset($_GET['searchtitle'])) {
 }
 
 ?>
+
+
+<!DOCTYPE html>
+<html>
+
+
 
 <head>
 
@@ -17,7 +20,8 @@ if (!isset($_GET['searchtitle'])) {
     <link href="css/footable.core.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="js/footable.js" type="text/javascript"></script>
+
+
 </head>
 
     <meta charset="utf-8">
@@ -25,6 +29,19 @@ if (!isset($_GET['searchtitle'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+          <div class="navbar-header ">
+          <ul class="nav navbar-nav">
+            <li><a class="active" href="../search.php"><strong>Paige's Website </strong></a></li>
+            <li><a href="../search.php">Search Page</a></li>
+            <li><a href="#">More to Come!</a></li>
+          </ul>
+        </div>
+        </nav>
+        
         <div class="container">
             <div class="jumbotron">
                 <style="background-image: url(../img/jumbotronBackground.png); background-size: cover;">
@@ -85,20 +102,20 @@ if (!isset($_GET['searchtitle'])) {
     </script>
 
 <div>
-    <table class="footable table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Rating</th>
-                <th data-hide="all">Genre</th>
-                <th data-hide="all">Format</th>
+                <th >Genre</th>
+                <th>Format</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($dvds as $dvd) : ?>
             <tr>
                 <td> <h4><?php echo $dvd->title; ?> </h4></td>
-                <td> <?php echo $dvd->rating_name; ?> </td>
+                <td><a href ="ratings.php?rating_name=<?php echo $dvd->rating_name?>"><?php echo $dvd->rating_name ?></a></td>
                 <td><?php echo $dvd->genre_name; ?> </td>
                 <td><?php echo $dvd->format_name; ?> </td>
             </tr>
@@ -112,7 +129,7 @@ if (!isset($_GET['searchtitle'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="path_to_your_js/footable.js" type="text/javascript"></script>
+    <script src="js/footable.js" type="text/javascript"></script>
 
 
 </body>
