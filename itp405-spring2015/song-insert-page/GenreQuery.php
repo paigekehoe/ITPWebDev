@@ -1,17 +1,17 @@
 <?php 
+require_once __DIR__ . "/Database.php";
 
 class GenreQuery extends Database {
 	public function getAll(){
         		  $sql = "
                 SELECT *
                 FROM genres
-                ORDER BY genre_name
+                ORDER BY genre
                 ";
 
-            $statement = $pdo->prepare($sql);
+            $statement = static::$pdo->prepare($sql);
             $statement->execute();
-            $dvds = $statement->fetchAll(PDO::FETCH_OBJ);
-            var_dump($statement);
+            return $statement->fetchAll(PDO::FETCH_OBJ);
 
 	}
     
